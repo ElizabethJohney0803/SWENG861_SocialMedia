@@ -1,26 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Login Page </title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="login-box">
-<div class="left-box">
-<h1>Login</h1>
-<input type="text" class="input-box" placeholder="UserName">
-<input type="email" class="input-box" placeholder="Email">
-<input type="password" class="input-box" placeholder="Enter Password">
-<input type="password" class="input-box" placeholder="Re-Enter password">
-<input type="submit" class="submit-button" placeholder="Login">
-</div>
-<div class="right-box">
-<span class="right-title">Login with <br>Social Network</span>
-<button class="social facebook">Log in with Facebook</button>
-<button class="social google">Log in with google</button>
-</div>
-<div class="or">
-OR
-</div>
-</div>
+  <div class="login-box">
+    <div class="left-box">
+      <h1>Login</h1>
+      <input type="text" class="input-box" placeholder="UserName">
+      <input type="email" class="input-box" placeholder="Email">
+      <input type="password" class="input-box" placeholder="Enter Password">
+      <input type="password" class="input-box" placeholder="Re-Enter password">
+      <input type="submit" class="submit-button" value="Login">
+    </div>
+    <div class="right-box">
+      <span class="right-title">Login with <br>Social Network</span>
+      <button class="social facebook" id="facebook-login">Log in with Facebook</button>
+      <button class="social google" id="google-login">Log in with Google</button>
+    </div>
+    <div class="or">
+      OR
+    </div>
+  </div>
+
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function handleGoogleLogin(credentialResponse) {
+      console.log('Google ID Token:', credentialResponse.credential);
+      
+    }
+
+    google.accounts.id.initialize({
+      client_id: 'elizabethjohney59@gmail.com', 
+      callback: handleGoogleLogin
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("google-login"),
+      { theme: "outline", size: "large" }
+    );
+  </script>
+
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: 'elsojohney', 
+        cookie: true,
+        xfbml: true,
+        version: 'v16.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    document.getElementById('facebook-login').onclick = function() {
+      FB.login(function(response) {
+        if (response.status === 'connected') {
+          console.log('Facebook Access Token:', response.authResponse.accessToken);
+          
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      }, {scope: 'email'});
+    };
+  </script>
+  <script src="login.js"></script>
 </body>
 </html>
