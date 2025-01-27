@@ -1,103 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="style.css">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID',
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("googleButton"),
+                { theme: "outline", size: "large" }
+            );
+        };
+    </script>
 </head>
 <body>
-  <div class="login-box">
-    <div class="left-box">
-      <h1>Login</h1>
-      <input type="text" class="input-box" placeholder="UserName">
-      <input type="email" class="input-box" placeholder="Email">
-      <input type="password" class="input-box" placeholder="Enter Password">
-      <input type="password" class="input-box" placeholder="Re-Enter password">
-      <input type="submit" class="submit-button" value="Login">
+    <div class="login-box">
+        <div class="left-box">
+            <h1>Login</h1>
+            <input type="text" class="input-box" placeholder="UserName">
+            <input type="email" class="input-box" placeholder="Email">
+            <input type="password" class="input-box" placeholder="Enter Password">
+            <input type="password" class="input-box" placeholder="Re-Enter password">
+            <input type="submit" class="submit-button" value="Login">
+        </div>
+        <div class="right-box">
+            <span class="right-title">Login with <br>Social Network</span>
+            <div id="googleButton" class="social google"></div>
+        </div>
+        <div class="or">OR</div>
     </div>
-    <div class="right-box">
-      <span class="right-title">Login with <br>Social Network</span>
-      <button class="social facebook" id="facebook-login">Log in with Facebook</button>
-      <button class="social google" id="google-login">Log in with Google</button>
-    </div>
-    <div class="or">
-      OR
-    </div>
-  </div>
-
-  <!-- Google SDK -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-  <!-- Facebook SDK -->
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: 'elsojohney', // Replace with your Facebook App ID
-        cookie: true,
-        xfbml: true,
-        version: 'v16.0'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-  <!-- Custom JavaScript for Login Logic -->
-  <script>
-    // Google Login Logic
-    function initializeGoogleLogin() {
-      google.accounts.id.initialize({
-        client_id: 'elizabethjohney59@gmail.com', // Replace with your Google Client ID
-        callback: handleGoogleLogin
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById("google-login"), 
-        { theme: "outline", size: "large" }
-      );
-    }
-
-    function handleGoogleLogin(credentialResponse) {
-      console.log('Google ID Token:', credentialResponse.credential);
-      // Send this token to your server for verification.
-    }
-
-    // Facebook Login Logic
-    function initializeFacebookLogin() {
-      // Already initialized in the Facebook SDK script
-    }
-
-    function handleFacebookLogin() {
-      FB.login(function (response) {
-        if (response.status === 'connected') {
-          console.log('Facebook Access Token:', response.authResponse.accessToken);
-          // Send this token to your server for verification.
-        } else {
-          console.log('User cancelled login or did not fully authorize.');
-        }
-      }, { scope: 'email' });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // Initialize Google and Facebook login SDKs
-      initializeGoogleLogin();
-
-      // Attach Facebook login click handler
-      const facebookLoginButton = document.getElementById('facebook-login');
-      if (facebookLoginButton) {
-        facebookLoginButton.addEventListener('click', handleFacebookLogin);
-      }
-    });
-  </script>
-  <div id="buttonDiv"></div>
 </body>
 </html>
-
