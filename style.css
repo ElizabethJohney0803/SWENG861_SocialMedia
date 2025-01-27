@@ -1,0 +1,133 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #777;
+    font-family: sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(rocket-is-flying-in-galaxy-space-of-the-universe.jpg);
+    background-position: center;
+    background-size: cover; 
+    font-weight: 300;
+}
+.login-box
+{ 
+    position: relative;
+    margin: 10% auto;
+    height: 400px;
+    width: 600px;
+    background: rgba(0,0,0,0.4);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+
+}
+.left-box
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+}
+h1
+{
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #fff;
+}
+.input-box
+{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: 1px solid #fff;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+    color: #fff;
+    background: transparent;
+
+}
+.submit-button
+{
+    margin-bottom: 28px;
+    width: 120px;
+    height: 32px;
+    background: #ff0000;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+.submit-button:hover,
+.submit-button:focus
+{
+    background: #ff5722;
+    transition: 0.2s;
+
+}
+.right-box
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(3_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg);
+    background-position: center;
+    background-size: cover; 
+    font-weight: 300;
+}
+.right-title
+{
+    display: block;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+.social
+{
+   
+    margin-bottom: 20px;
+    width: 220px;
+    height: 36px;
+    border-radius: 2px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+    color: #000000;
+    cursor: pointer;
+
+}
+.facebook
+{
+    background: #32508e;
+}
+.google
+{
+    background: #dd4b39;
+}
+.or
+{
+    position: absolute;
+    top: 180px;
+    left: 280px;
+    width: 40px;
+    height: 40px;
+    background: #efefef;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
